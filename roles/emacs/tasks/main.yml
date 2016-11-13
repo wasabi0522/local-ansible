@@ -1,0 +1,23 @@
+---
+- name: Install emacs
+  homebrew:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - emacs
+    - cask
+
+- name: Copy emacs configuration
+  copy:
+    src: emacs.d/
+    dest: ~/.emacs.d/
+
+- name: Install elisps
+  command: /usr/local/Cellar/cask/0.8.1/bin/cask install
+  args:
+    chdir: ~/.emacs.d/
+
+- name: Upgrade elisps
+  command: /usr/local/Cellar/cask/0.8.1/bin/cask upgrade
+  args:
+    chdir: ~/.emacs.d/

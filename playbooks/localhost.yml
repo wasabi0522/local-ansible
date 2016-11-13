@@ -1,0 +1,62 @@
+---
+- name: Setup my MBP
+  hosts: localhost
+  connection: local
+  roles:
+    - ../roles/hostname
+    - ../roles/osx
+    - ../roles/homebrew
+    - ../roles/ssh
+    - ../roles/zsh
+    - ../roles/tmux
+    - ../roles/less
+    - ../roles/git
+    - ../roles/emacs
+  vars:
+    my_name: Masahiro Kiura
+    my_username: wasabi
+    my_email: rocknrollsuiside@gmail.com
+    my_mac_hostname: wsb-MBP13
+    homebrew_cask_packages:
+      - appcleaner
+      - atom
+      - clamxav
+      - docker
+      - font-source-han-code-jp
+      - google-cloud-sdk
+      - google-chrome
+      - google-drive
+      - google-hangouts
+      - google-japanese-ime
+      - istat-menus
+      - java
+      - karabiner
+      - kindle
+      - minecraft
+      - powermate
+      - skype
+      - slack
+      - the-unarchiver
+      - xquartz
+    homebrew_packages:
+      - cask
+      - coreutils
+      - gnu-sed
+      - gnu-tar
+      - go
+      - grep
+      - httpie
+      - jq
+      - mercurial
+      - node
+      - pypy
+      - pypy3
+      - python
+      - python3
+      - ruby
+      - sbt
+      - scala
+      - the_silver_searcher
+      - tree
+      - watch
+      - wget

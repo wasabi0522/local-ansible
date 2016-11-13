@@ -1,0 +1,38 @@
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
+export GOPATH='${HOME}/go'
+
+source ~/.zsh/00_setopts.zsh
+source ~/.zsh/01_functions.zsh
+source ~/.zsh/02_aliases.zsh
+
+if [[ `uname` -eq "Darwin" ]]; then
+    load-if-exists ~/.zsh/mac/00_basic.zsh
+    load-if-exists ~/.zsh/mac/01_emacs.zsh
+    load-if-exists ~/.zsh/mac/02_programminglanguages.zsh
+fi
+
+# enhancd
+if [ -f "${HOME}/.enhancd/zsh/enhancd.zsh" ]; then
+    source "${HOME}/.enhancd/zsh/enhancd.zsh"
+fi
+
+# google cloud sdk
+if [ -d "${HOME}/google-cloud-sdk" ]; then
+    # The next line updates PATH for the Google Cloud SDK.
+    source "${HOME}/google-cloud-sdk/path.zsh.inc"
+
+    # The next line enables shell command completion for gcloud.
+    source "${HOME}/google-cloud-sdk/completion.zsh.inc"
+fi

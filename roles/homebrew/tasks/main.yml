@@ -1,0 +1,33 @@
+---
+- name: Check Homebrew Installation
+  stat:
+    path: /usr/local/bin/brew
+  register: brew_executable
+
+- name: Upgrade Homebrew
+  homebrew:
+    update_homebrew: yes
+
+- name: Add homebrew tap
+  homebrew_tap:
+    tap: "{{ item }}"
+    state: present
+  with_items:
+    - homebrew/core
+    - homebrew/binary
+    - homebrew/dupes
+    - homebrew/versions
+    - caskroom/cask
+    - caskroom/fonts
+
+- name: Install homebrew cask packages
+  homebrew_cask:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ homebrew_cask_packages }}"
+
+- name: Install homebrew packages
+  homebrew:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ homebrew_packages }}"

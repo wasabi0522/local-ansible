@@ -1,0 +1,16 @@
+# http://qiita.com/monry/items/67d0c9744df85012277d
+# http://qiita.com/yuyuchu3333/items/1f6a0c121ad42c24dfd9
+
+set line-graphics = utf-8       # グラフ描画時の種別
+set tab-size = 4                # TAB 文字の表示幅
+set ignore-space = all          # 空白無視
+set diff-context = 6            # 差分の前後の表示行数（diff-context)を指定
+
+# メインビューの表示設定
+set blame-view = id date:default author:full line-number:true,interval=1 text
+set main-view = id date:default author:full commit-title:true,graph=true,refs=true
+set refs-view = id date:default author:full ref:true commit-title:true
+set status-view = file-name status:long
+
+# commit idをコピー
+bind main C !@git pbcopy %(commit)

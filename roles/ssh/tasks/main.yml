@@ -1,0 +1,20 @@
+---
+- name: Copy ssh files
+  copy:
+    src: ssh/
+    dest: ~/.ssh
+    mode: 0700
+
+- name: Change mode ssh poublic/private keys
+  file:
+    path: "{{ item }}"
+    mode: 0600
+  with_fileglob:
+    - ~/.ssh/*
+
+- name: Change mode ssh poublic keys
+  file:
+    path: "{{ item }}"
+    mode: 0644
+  with_fileglob:
+    - ~/.ssh/*.pub

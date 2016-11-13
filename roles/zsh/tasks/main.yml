@@ -1,0 +1,56 @@
+---
+- name: Install zsh and someting
+  homebrew:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - zsh
+    - colordiff
+
+- name: Change login shell
+  user:
+    name: "{{ my_username }}"
+    state: present
+    shell: /usr/local/bin/zsh
+  become: yes
+
+- name: Register whether git clone status
+  stat: path=~/.zprezto
+  register: zprezto_result
+  failed_when: no
+  changed_when: no
+
+- name: Install prezto
+  git:
+  args:
+    repo: git@github.com:phillipalexander/prezto.git
+    dest: ~/.zprezto
+    accept_hostkey: yes
+    track_submodules: yes
+    force: yes
+    version: master
+  when: not zprezto_result.stat.exists
+
+- name: Create symlinks
+  file:
+    state: link
+    src: ~/.zprezto/runcoms/{{ item }}
+    path: ~/.{{ item }}
+  with_items:
+    - zlogin
+    - zlogout
+    - zprofile
+    - zshenv
+
+- name: Overwrite zsh files
+  copy:
+    src: "{{ item }}"
+    dest: "~/.{{ item }}"
+  with_items:
+    - zpreztorc
+    - zshrc
+
+- name: Copy zsh files
+  copy:
+    src: zsh/
+    dest: ~/.zsh/

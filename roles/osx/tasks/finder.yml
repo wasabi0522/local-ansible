@@ -1,0 +1,25 @@
+- name: Change the setting of Finder
+  osx_defaults:
+    domain: com.apple.finder
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+  with_items:
+    - key: NewWindowTarget
+      type: string
+      value: PfDe
+    - key: NewWindowTargetPath
+      type: string
+      value: file://${HOME}/
+    - key: ShowStatusBar
+      type: bool
+      value: true
+    - key: ShowPathbar
+      type: bool
+      value: true
+    - key: ShowTabView
+      type: bool
+      value: true
+    - key: AppleShowAllFiles
+      type: bool
+      value: true

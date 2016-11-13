@@ -1,0 +1,9 @@
+
+# Created by https://www.gitignore.io/api/ansible
+
+### Ansible ###
+*.retry
+
+### Personal setting ###
+roles/ssh/files/*
+roles/git/files/gitconfig.office

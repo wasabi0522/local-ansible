@@ -1,0 +1,25 @@
+---
+- name: Install git and someting
+  homebrew:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - ghq
+    - git
+    - hub
+    - source-highlight
+    - tig
+
+- name: Copy git files
+  copy:
+    src: "{{ item }}"
+    dest: "~/.{{ item }}"
+  with_items:
+    - gitconfig
+    - gitignore
+    - tigrc
+
+- name: Copy gitconfig files
+  template:
+    src: gitconfig.home.j2
+    dest: ~/.gitconfig.home

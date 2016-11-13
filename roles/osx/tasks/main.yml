@@ -1,0 +1,4 @@
+---
+- include: dock.yml
+- include: finder.yml
+- include: others.yml

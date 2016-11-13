@@ -1,0 +1,47 @@
+# http://baqamore.hatenablog.com/entry/2014/12/25/070232
+- name: Change the setting of DOck
+  osx_defaults:
+    domain: com.apple.dock
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+  with_items:
+    - key: autohide
+      type: bool
+      value: true
+    # - key: presistent-apps
+    #   type: array
+    #   value: ['']
+    - key: orientation
+      type: string
+      value: right
+    - key: minimize-to-application
+      type: bool
+      value: true
+    - key: titlesize
+      type: int
+      value: 512
+    - key: wvous-tl-corner
+      type: int
+      value: 2
+    - key: wvous-tl-modifier
+      type: int
+      value: 0
+    - key: wvous-tr-corner
+      type: int
+      value: 2
+    - key: wvous-tr-modifier
+      type: int
+      value: 0
+    - key: wvous-bl-corner
+      type: int
+      value: 4
+    - key: wvous-bl-modifier
+      type: int
+      value: 0
+    - key: wvous-br-corner
+      type: int
+      value: 5
+    - key: wvous-br-modifier
+      type: int
+      value: 0

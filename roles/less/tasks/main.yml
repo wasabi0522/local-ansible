@@ -1,0 +1,9 @@
+---
+- name: Pygmentsのインストール
+  pip:
+    name: Pygments
+
+- name: Install lesspipe
+  homebrew:
+    name: "lesspipe"
+    state: installed

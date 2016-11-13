@@ -1,0 +1,27 @@
+- name: Change the speed of mouse
+  osx_defaults:
+    domain: .GlobalPreferences
+    key: com.apple.mouse.scaling
+    type: string
+    value: 5
+
+- name: Change the speed of trackpad
+  osx_defaults:
+    domain: .GlobalPreferences
+    key: com.apple.trackpad.scaling
+    type: float
+    value: 5
+
+- name: Disable Dashboard
+  osx_defaults:
+    domain: com.apple.dashborad
+    key: enabled-state
+    type: int
+    value: 1
+
+- name: Need password to cancel screensaver
+  osx_defaults:
+    domain: com.apple.screensaver
+    key: askForPasswordDelay
+    type: float
+    value: 21600

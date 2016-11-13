@@ -1,0 +1,46 @@
+---
+- name: Install tmux
+  homebrew:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - tmux
+    - tmux-mem-cpu-load
+    - reattach-to-user-namespace
+
+- name: Install tpm
+  git:
+  args:
+    repo: git@github.com:tmux-plugins/tpm.git
+    dest: ~/.tmux/plugins/tpm
+    accept_hostkey: yes
+    force: yes
+    version: master
+
+- name: Register whether git clone status
+  stat: path=/tmp/fonts
+  register: tmux_font_result
+  failed_when: no
+  changed_when: no
+
+- name: Clone Powerline fonts
+  git:
+  args:
+    repo: git@github.com:powerline/fonts.git
+    dest: /tmp/fonts
+    accept_hostkey: yes
+    force: yes
+    version: master
+  when: not tmux_font_result.stat.exists
+
+- name: Install PowerLine fonts
+  command: /tmp/fonts/install.sh
+  when: not tmux_font_result.stat.exists
+
+- name: Copy tmux configuration files
+  copy:
+    src: "{{ item }}"
+    dest: "~/.{{ item }}"
+  with_items:
+    - tmux.conf
+    - tmux-powerlinerc
