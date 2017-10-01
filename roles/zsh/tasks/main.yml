@@ -5,6 +5,7 @@
     state: installed
   with_items:
     - zsh
+    - peco
     - colordiff
 
 - name: Change login shell

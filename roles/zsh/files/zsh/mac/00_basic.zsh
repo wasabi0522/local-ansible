@@ -14,7 +14,6 @@ function brew_all_update () {
     ${BREW} upgrade
     ${BREW} cleanup --force
     ${BREW} cask doctor
-    ${BREW} cask update
     ${BREW} cask cleanup
     echo "Finshed brew cask all update"
 }

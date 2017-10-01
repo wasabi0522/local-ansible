@@ -23,10 +23,6 @@ if [[ `uname` -eq "Darwin" ]]; then
     load-if-exists ~/.zsh/mac/02_programminglanguages.zsh
 fi
 
-# enhancd
-if [ -f "${HOME}/.enhancd/zsh/enhancd.zsh" ]; then
-    source "${HOME}/.enhancd/zsh/enhancd.zsh"
-fi
 
 # google cloud sdk
 if [ -d "${HOME}/google-cloud-sdk" ]; then
